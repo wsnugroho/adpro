@@ -1,6 +1,5 @@
 package id.ac.ui.id.cs.adprog.eshop.model;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
