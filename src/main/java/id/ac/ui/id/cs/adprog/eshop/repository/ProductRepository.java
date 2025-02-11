@@ -1,11 +1,13 @@
 package id.ac.ui.id.cs.adprog.eshop.repository;
 
 import id.ac.ui.id.cs.adprog.eshop.model.Product;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
+@Repository
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
