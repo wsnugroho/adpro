@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +16,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
-public class HomePageFunctionalTest {
+public class CreateProductFunctionalTest {
     /**
      * The port number assigned to the running application during test execution.
      * Set automatically during each test run by Spring Framework's test context.
@@ -33,26 +34,25 @@ public class HomePageFunctionalTest {
 
     @BeforeEach
     void setupTest() {
-        baseUrl = String.format("%s:%d/product", testBaseUrl, serverPort);
+        baseUrl = String.format("%s:%d/product/create", testBaseUrl, serverPort);
     }
 
     @Test
-    void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
-        // Exercise
+    void product_isCreated(ChromeDriver driver) throws Exception {
         driver.get(baseUrl);
-        String pageTitle = driver.getTitle();
 
-        // Verify
-        assertEquals("ADV Shop", pageTitle);
-    }
+        WebElement nameInput = driver.findElement(By.id("nameInput"));
+        WebElement quantityInput = driver.findElement(By.id("quantityInput"));
+        WebElement submitButton = driver.findElement(By.cssSelector("button.btn.btn-primary"));
 
-    @Test
-    void welcomeMessage_homePage_isCorrect(ChromeDriver driver) throws Exception {
-        // Exercise
-        driver.get(baseUrl);
-        String welcomeMessage = driver.findElement(By.tagName("h3")).getText();
+        nameInput.sendKeys("ZGMF-103HD Lightning Buster Gundam");
+        quantityInput.sendKeys("5");
+        submitButton.click();
 
-        // Verify
-        assertEquals("Welcome", welcomeMessage);
+        WebElement productName = driver.findElement(By.xpath("//td[text()='ZGMF-103HD Lightning Buster Gundam']"));
+        WebElement productQuantity = driver.findElement(By.cssSelector("td + td"));
+
+        assertNotNull(productName);
+        assertEquals("5", productQuantity.getText());
     }
 }
