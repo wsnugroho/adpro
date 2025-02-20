@@ -3,9 +3,9 @@ package id.ac.ui.id.cs.adprog.eshop.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProductTest {
+class ProductTest {
     Product product;
 
     @BeforeEach

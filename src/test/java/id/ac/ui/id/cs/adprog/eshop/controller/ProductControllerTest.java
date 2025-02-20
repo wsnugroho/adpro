@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ProductController.class)
-public class ProductControllerTest {
+class ProductControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -47,7 +47,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testCreateProductPage() throws Exception {
+    void testCreateProductPage() throws Exception {
         mockMvc.perform(get("/product/create"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("product/createProduct"))
@@ -55,7 +55,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testCreateProductPost() throws Exception {
+    void testCreateProductPost() throws Exception {
         when(productService.create(any(Product.class))).thenReturn(product);
 
         mockMvc.perform(post("/product/create")
@@ -68,7 +68,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testEditProductPage() throws Exception {
+    void testEditProductPage() throws Exception {
         when(productService.findOne(anyString())).thenReturn(product);
 
         mockMvc.perform(get("/product/edit/{id}", "eb558e9f-1c39-460e-8860-71af6af63bd6"))
@@ -81,7 +81,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testEditProductPost() throws Exception {
+    void testEditProductPost() throws Exception {
         when(productService.edit(anyString(), any(Product.class))).thenReturn(product);
 
         mockMvc.perform(post("/product/edit/{id}", "eb558e9f-1c39-460e-8860-71af6af63bd6")
@@ -94,7 +94,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testDeleteProductPost() throws Exception {
+    void testDeleteProductPost() throws Exception {
         when(productService.delete(anyString())).thenReturn(product);
 
         mockMvc.perform(post("/product/delete/{id}", "eb558e9f-1c39-460e-8860-71af6af63bd6"))
@@ -105,7 +105,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testProductListPage() throws Exception {
+    void testProductListPage() throws Exception {
         when(productService.findAll()).thenReturn(productList);
 
         mockMvc.perform(get("/product/list"))
