@@ -12,8 +12,12 @@ import java.util.UUID;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+    private final ProductRepository productRepository;
+
     @Autowired
-    private ProductRepository productRepository;
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public Product create(Product product) {
@@ -39,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     public Product edit(String id, Product newProduct) {
         return productRepository.edit(id, newProduct);
     }
-  
+
     @Override
     public Product delete(String id) {
         return productRepository.delete(id);
