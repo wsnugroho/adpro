@@ -1,4 +1,5 @@
 FROM docker.io/library/eclipse-temurin:21-jdk-alpine AS builder
+
 WORKDIR /src/advshop
 COPY . .
 RUN ./gradlew clean bootJar
@@ -6,8 +7,8 @@ RUN ./gradlew clean bootJar
 FROM docker.io/library/eclipse-temurin:21-jre-alpine AS runner
 
 ARG USER_NAME=advshop
-ARG USER_UID=1010
-ARG USER_GID=1010
+ARG USER_UID=1000
+ARG USER_GID=1000
 
 RUN addgroup -g ${USER_GID} ${USER_NAME} && \
     adduser -h /opt/advshop -D -u ${USER_UID} -g ${USER_GID} ${USER_NAME}
