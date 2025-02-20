@@ -38,18 +38,27 @@ repositories {
 }
 
 dependencies {
+    // Core Spring Boot dependencies
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    // Lombok configuration
     compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    // Development tools
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    annotationProcessor("org.projectlombok:lombok")
+
+    // Testing dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // Selenium testing dependencies
     testImplementation("org.seleniumhq.selenium:selenium-java:$seleniumJavaVersion")
     testImplementation("io.github.bonigarcia:selenium-jupiter:$seleniumJupiterVersion")
     testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
 
 tasks.register<Test>("unitTest") {
