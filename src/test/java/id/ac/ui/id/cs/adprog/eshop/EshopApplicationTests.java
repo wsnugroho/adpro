@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class EshopApplicationTests {
@@ -20,6 +20,11 @@ class EshopApplicationTests {
 
     @Test
     void mainMethodStartsApplication() {
-        EshopApplication.main(new String[]{});
+        try {
+            EshopApplication.main(new String[]{});
+            assertTrue(true, "Application should start without throwing exceptions");
+        } catch (Exception e) {
+            fail("Application should not throw any exceptions on startup: " + e.getMessage());
+        }
     }
 }
