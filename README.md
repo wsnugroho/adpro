@@ -10,6 +10,56 @@ Deployment: [Eshop on Koyeb](https://evil-virgie-wsnugroho-c810dfaf.koyeb.app)
 
 <hr>
 
+# Modul 3 - Maintainability & OO Principles
+
+## Refleksi 3
+
+> Explain what principles you apply to your project!
+
+1. **Single Responsibility Principle (SRP)**: Saya memisahkan class `CarController` ke file tersendiri terpisah dari
+   `ProductController`. Hal ini saya lakukan karena setiap file per controller seharusnya menghandle masing-masing
+   tasknya
+   tersendiri, dalam hal ini `ProductController` menghandle routing `/product/*` sedangkan `CarController` menghandle
+   routing `/car/*`.
+2. **Open/Closed Principle (OCP)**: Saya menggunakan interface agar kode saya dapat diperluas tanpa harus diubah. Dengan
+   penggunaan interface `CarService` sebagai kontrak antara controller dan implementasinya, saya bisa menambah
+   implementasi baru di masa depan tanpa mengubah kode controllernya.
+3. **Liskov Substitution Principle (LSP)**: Saya mengubah tipe dependency di `CarController` dari implementasi konkret
+   `CarServiceImpl` menjadi interface `CarService`, sehingga implementasi apapun dari `CarService` dapat digunakan tanpa
+   merusak fungsionalitas aplikasi.
+4. **Interface Segregation Principle (ISP)**: Saya terapkan dengan memastikan interface yang dibuat hanya berisi metode
+   yang memang dibutuhkan. Interface seperti `CarService` dan `ProductService` hanya berisi operasi-operasi penting
+   seperti create, find, update, dan delete, tanpa memaksa implementasi metode yang tidak dibutuhkan.
+5. **Dependency Inversion Principle (DIP)**: Saya terapkan dengan cara membuat class-class high-level (seperti
+   controller) tidak bergantung langsung pada implementasi konkret, melainkan pada abstraksi berupa interface. Spring
+   Boot membantu implementasi DIP melalui fitur dependency injection dengan annotation `@Autowired`, dimana object yang
+   dibutuhkan tidak perlu dibuat secara manual dengan operator new, tetapi cukup dideklarasikan sebagai dependency yang
+   kemudian akan disediakan oleh framework.
+
+> Explain the advantages of applying SOLID principles to your project with examples.
+
+Menerapkan prinsip SOLID dapat memberikan banyak keuntungan. Pertama, maintenance kode menjadi lebih mudah
+karena setiap kelas memiliki tanggung jawab yang terdefinisi dengan jelas. Misalnya, perubahan pada logika bisnis mobil
+hanya mempengaruhi `CarServiceImpl` tanpa perlu mengubah controller atau repository. Kemudahan pengujian juga meningkat
+signifikan. Dengan ketergantungan pada interface seperti `CarService`, saya dapat dengan mudah membuat mock untuk
+pengujian. Sebagai contoh, untuk menguji `CarController`, saya bisa membuat mock dari `CarService` tanpa perlu
+implementasi aktual, sehingga pengujian unit dapat dilakukan secara terisolasi. Fleksibilitas dan skalabilitas kode juga
+meningkat. Contohnya, jika suatu saat saya ingin menambahkan implementasi alternatif seperti `TruckServiceImpl` yang
+mengimplementasi `CarService`, saya dapat melakukannya tanpa mengubah kode di `CarController`. Controller tidak perlu
+tahu implementasi mana yang digunakan, karena bergantung pada interface.
+
+> Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+Tidak menerapkan prinsip SOLID dapat menimbulkan berbagai masalah. Pertama, refactoring dan pemeliharaan kode menjadi
+sulit.
+Misalnya, jika `CarController` dan `ProductController` berada dalam satu file, perubahan pada logika mobil bisa
+berdampak
+tidak sengaja pada fitur produk, menciptakan bug yang susah dilacak. Ketergantungan kuat antar kelas (tight coupling)
+juga akan membuat kode menjadi kaku dan sulit diubah. Contohnya, jika `CarController` langsung bergantung pada
+`CarServiceImpl`, mengganti implementasi service akan memerlukan perubahan kode di controller tersebut. Selain itu,
+proses unit testing menjadi lebih menantang. Tanpa penggunaan interface dan dependency injection, membuat mock untuk
+komponen akan lebih rumit.
+
 # Modul 2 - CI/CD & DevOps
 
 ## Refleksi 2
