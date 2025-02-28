@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Edit Car</title>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-bold mb-4">Edit Car</h1>
+
+    <form class="max-w-md bg-white p-6 rounded-md shadow-md" method="post" th:action="@{/car/editCar}"
+          th:object="${car}">
+        <input th:field="*{carId}" type="hidden"/>
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-600" for="carName">Car Name</label>
+            <input class="mt-1 p-2 w-full border rounded-md" id="carName" name="carName" th:field="*{carName}" th:value="${car.carName}"
+                   type="text">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-600" for="carColor">Car Color</label>
+            <input class="mt-1 p-2 w-full border rounded-md" id="carColor" name="carQuantity" th:field="*{carColor}" th:value="${car.carColor}"
+                   type="text">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-600" for="carQuantity">Car Quantity</label>
+            <input class="mt-1 p-2 w-full border rounded-md" id="carQuantity" name="carQuantity" th:field="*{carQuantity}"
+                   th:value="${car.carQuantity}" type="number">
+        </div>
+
+        <div class="flex justify-end">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-md" type="submit">Save Changes</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
