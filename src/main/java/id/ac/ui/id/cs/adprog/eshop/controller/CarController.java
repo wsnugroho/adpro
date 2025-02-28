@@ -2,7 +2,7 @@ package id.ac.ui.id.cs.adprog.eshop.controller;
 
 
 import id.ac.ui.id.cs.adprog.eshop.model.Car;
-import id.ac.ui.id.cs.adprog.eshop.service.CarServiceImpl;
+import id.ac.ui.id.cs.adprog.eshop.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/car")
 public class CarController {
     @Autowired
-    private CarServiceImpl carService;
+    private CarService carService;
 
     @GetMapping("/listCar")
     public String carListPage(Model model) {
