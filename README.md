@@ -10,6 +10,52 @@ Deployment: [Eshop on Koyeb](https://evil-virgie-wsnugroho-c810dfaf.koyeb.app)
 
 <hr>
 
+# Modul 4 - Refactoring & TDD
+
+> Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing”
+> submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If
+> not, explain things that you need to do next time you make more tests.
+
+Menurut saya, TDD memang dapat mempermudah pekerjaan suatu proyek dalam jangka panjang, terutama dalam menjaga kualitas
+kode dan mengurangi bug proyek tersebut. Namun, di awal, saya merasa cukup kesulitan karena saya harus mengubah
+list-list spesifikasi fitur menjadi serangkaian tes sebelum implementasi kode dilakukan. Hal ini membutuhkan pemahaman
+yang mendalam tentang kebutuhan sistem dan sering kali memakan waktu lebih lama dibanding langsung mengimplementasikan
+fiturnya. Meskipun begitu, saya menyadari bahwa dengan disiplin menerapkan TDD, proses pengembangan menjadi lebih
+terstruktur, dan perubahan di masa depan bisa dilakukan dengan lebih baik. Ke depannya, saya perlu lebih terbiasa
+dalam merancang tes di tahap awal pengembangan serta memastikan bahwa setiap spesifikasi fitur bisa diterjemahkan ke
+dalam test yang efektif tanpa menghambat alur pengembangan.
+
+> You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T.
+> principle or not. If not, explain things that you need to do the next time you create more tests.
+
+Berikut alasan mengapa test yang telah saya buat telah memenuhi prinsip F.I.R.S.T.:
+
+1. Fast
+   Test-test yang saya implementasikan berjalan dengan cepat karena saya telah tidak menggunakan dependency eksternal
+   dan mengantinya
+   dengan mocking. Tidak adanya ketergantungan dengan depedency luar membuat eksekusi test dapat berlangsung dalam waktu
+   milidetik dan memberikan feedback yang cepat selama proses pengembangan.
+
+2. Independent
+   Setiap test yang saya buat berdiri sendiri dan tidak bergantung pada test lain. Saya memastikan masing-masing test
+   memiliki setup yang jelas dan tidak berbagi state dengan test lainnya, sehingga urutan eksekusi test tidak
+   mempengaruhi hasil.
+
+3. Repeatable
+   Saya merancang test agar menghasilkan hasil yang konsisten setiap kali dijalankan, terlepas dari environtment
+   eksekusinya. Saya menggunakan mocking untuk mengisolasi unit yang diuji dari faktor eksternal yang dapat berubah,
+   sehingga hasil test selalu dapat diandalkan.
+
+4. Self-Validating
+   Test yang saya buat secara otomatis menentukan keberhasilan atau kegagalannya melalui assertions yang jelas.
+   Saya tidak memerlukan interpretasi manual karena setiap test memberikan feedback langsung tentang apakah kode
+   berfungsi sesuai harapan atau tidak.
+
+5. Timely
+   Saya menerapkan pendekatan TDD dengan menulis test terlebih dahulu sebelum mengimplementasikan kode. Pendekatan ini
+   membantu saya memastikan kode yang dihasilkan benar-benar memenuhi kebutuhan dan lebih mudah diuji
+   karena testability sudah menjadi pertimbangan sejak awal.
+
 # Modul 3 - Maintainability & OO Principles
 
 ## Refleksi 3
